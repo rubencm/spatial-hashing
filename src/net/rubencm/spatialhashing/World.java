@@ -1,4 +1,4 @@
-package net.rubencm.spatialhashing;
+	package net.rubencm.spatialhashing;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,10 +9,6 @@ import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
-
-// Hashing an object, colisiones con geodata
-
-// TODO: Usar floats como dice el tutorial a ver
 
 public class World extends JComponent {
 
@@ -114,11 +110,6 @@ public class World extends JComponent {
 							Math.pow(n.position.x-o.position.x, 2) +
 							Math.pow(o.position.y-n.position.y, 2) <=
 							Math.pow(o.radius+n.radius, 2)
-						 /*Me extraña que esto rinda menos
-							o.position.x-o.radius < n.position.x+n.radius &&
-							o.position.x+o.radius > n.position.x-n.radius &&
-							o.position.y-o.radius < n.position.y+n.radius &&
-							o.position.y+o.radius > n.position.y-n.radius*/
 						) {
 							o.color = Color.RED;
 						}
