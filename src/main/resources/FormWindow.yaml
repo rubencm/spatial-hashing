@@ -8,7 +8,7 @@ lblObjectRadius: Each object radius
 txtGridSize: "1000"
 txtCellSize: "250"
 txtNumObjects: "300"
-txtObjectRadius: "10"
+txtObjectRadius: "20"
 
 #Button
 btnSimulation: Run simulation
