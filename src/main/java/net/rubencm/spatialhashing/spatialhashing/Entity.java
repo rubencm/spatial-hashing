@@ -59,4 +59,8 @@ public class Entity {
 
         return objects;
     }
+
+    public void updatePosition() {
+        spatialHashing.updatePosition(this);
+    }
 }

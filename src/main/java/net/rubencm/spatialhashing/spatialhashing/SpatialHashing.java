@@ -19,7 +19,7 @@ public class SpatialHashing {
     private Integer buckets; // cellsBySide * cellsBySide
     private Float conversionFactor; // 1f / cellSize
 
-    private List<Entity> entities;
+    private List<Entity> entities; // TODO: Revisar paper, entities no hace nada
     private Hashtable<Integer, List<Entity>> hashtable;
 
     public SpatialHashing(Integer gridSize, Integer cellSize) {
@@ -53,5 +53,14 @@ public class SpatialHashing {
     // Given some coordinates, get the cell
     public int getCell(Integer x, Integer y) {
         return (int) (x * conversionFactor) + (int) (y * conversionFactor) * cellsBySide;
+    }
+
+    public void updatePosition(Entity entity) {
+        // FIXME
+        for(List<Entity> entities: hashtable.values()) {
+            entities.remove(entities.remove(entity));
+        }
+
+        hashtable.get(entity.getCell()).add(entity);
     }
 }

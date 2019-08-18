@@ -1,6 +1,6 @@
 package net.rubencm.spatialhashing;
 
-import net.rubencm.spatialhashing.windows.FormWindow;
+import net.rubencm.spatialhashing.swing.windows.FormWindow;
 
 import javax.swing.*;
 

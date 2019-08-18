@@ -1,4 +1,4 @@
-package net.rubencm.spatialhashing.windows;
+package net.rubencm.spatialhashing.swing.windows;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
@@ -87,8 +87,8 @@ public class FormWindow extends JFrame {
                 return false;
             }
 
-            if(cellSize < objectRadius * 4) {
-                JOptionPane.showMessageDialog(null, "Cell size should be bigger than 4 times the radius..");
+            if(cellSize < objectRadius * 2) {
+                JOptionPane.showMessageDialog(null, "Cell size should be bigger than the diameter..");
                 return false;
             }
 
