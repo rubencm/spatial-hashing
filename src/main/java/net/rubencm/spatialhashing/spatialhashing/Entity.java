@@ -1,5 +1,6 @@
 package net.rubencm.spatialhashing.spatialhashing;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,8 +16,13 @@ public class Entity {
     @Getter @Setter protected Integer y;
     @Getter protected Integer radius;
 
+//    @Getter private Integer id;
+//    private static int index = 0;
+
     public Entity(SpatialHashing spatialHashing, Integer x, Integer y, Integer radius) {
         this.spatialHashing = spatialHashing;
+
+//        id = index++;
 
         this.x = x;
         this.y = y;
@@ -60,7 +66,24 @@ public class Entity {
         return objects;
     }
 
-    public void updatePosition() {
-        spatialHashing.updatePosition(this);
+    public void updatePosition(int x, int y) {
+        setX(x);
+        setY(y);
+
+        spatialHashing.update(this);
     }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (o == this) return true;
+//
+//        if (!(o instanceof Entity)) return false;
+//
+//        return ((Entity)o).getId() == id;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return id.hashCode();
+//    }
 }

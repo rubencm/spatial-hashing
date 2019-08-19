@@ -52,17 +52,7 @@ public class EntityComponent extends JComponent {
     }
 
     public void updatePosition() {
-        int oldCell  = spatialHashing.getCell(entity.getX(), entity.getY());
-
-        entity.setX(calculateNextPositionX());
-        entity.setY(calculateNextPositionY());
-
-        int newCell  = spatialHashing.getCell(entity.getX(), entity.getY());
-
-        // If cell have changed, renew position
-        if (oldCell != newCell) {
-            entity.updatePosition();
-        }
+        entity.updatePosition(calculateNextPositionX(), calculateNextPositionY());
     }
 
     private long lastUpdateX = System.nanoTime();

@@ -1,6 +1,5 @@
 package net.rubencm.spatialhashing.swing.components;
 
-import lombok.extern.slf4j.Slf4j;
 import net.rubencm.spatialhashing.spatialhashing.Entity;
 import net.rubencm.spatialhashing.spatialhashing.SpatialHashing;
 import net.rubencm.spatialhashing.services.SpatialHashingFactory;
@@ -44,11 +43,13 @@ public class GridComponent extends JComponent {
 
     public void add(EntityComponent entityComponent) {
         this.entityComponents.add(entityComponent);
-        this.spatialHashing.addEntity(entityComponent.getEntity());
+        this.spatialHashing.add(entityComponent.getEntity());
     }
 
     @Override
     public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
         int gridSize = spatialHashing.getGridSize();
         int cellSize = spatialHashing.getCellSize();
         int cellsBySide = spatialHashing.getCellsBySide();

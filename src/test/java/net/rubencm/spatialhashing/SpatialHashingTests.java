@@ -2,7 +2,6 @@ package net.rubencm.spatialhashing;
 
 import net.rubencm.spatialhashing.spatialhashing.Entity;
 import net.rubencm.spatialhashing.spatialhashing.SpatialHashing;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,11 +20,11 @@ public class SpatialHashingTests {
         spatialHashing = new SpatialHashing(gridSize, cellSize);
 
         entity = new Entity(spatialHashing, 550, 550, 100);
-        spatialHashing.addEntity(entity);
+        spatialHashing.add(entity);
 
-        spatialHashing.addEntity(new Entity(spatialHashing, 0, 0, 100));
-        spatialHashing.addEntity(new Entity(spatialHashing, 375, 375, 100));
-        spatialHashing.addEntity(new Entity(spatialHashing, 700, 550, 100));
+        spatialHashing.add(new Entity(spatialHashing, 0, 0, 100));
+        spatialHashing.add(new Entity(spatialHashing, 375, 375, 100));
+        spatialHashing.add(new Entity(spatialHashing, 700, 550, 100));
     }
 
     @Test
