@@ -126,7 +126,7 @@ public class GridComponent extends JComponent {
         checkCollisionsThread = new CheckCollisionsThread(spatialHashing, entityComponents);
         checkCollisionsThread.start();
 
-        updateEntitiesCellThread = new UpdateEntitiesCellThread(entityComponents);
+        updateEntitiesCellThread = new UpdateEntitiesCellThread(spatialHashing, entityComponents);
         updateEntitiesCellThread.start();
     }
 

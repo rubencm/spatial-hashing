@@ -15,7 +15,8 @@ public class UpdateEntitiesCellThread extends Thread {
     SpatialHashing spatialHashing;
     List<EntityComponent> entityComponents;
 
-    public UpdateEntitiesCellThread(List<EntityComponent> entityComponents) {
+    public UpdateEntitiesCellThread(SpatialHashing spatialHashing, List<EntityComponent> entityComponents) {
+        this.spatialHashing = spatialHashing;
         this.entityComponents = entityComponents;
     }
 
@@ -28,6 +29,7 @@ public class UpdateEntitiesCellThread extends Thread {
             now = System.currentTimeMillis();
 
             if(now - last > updateTime) {
+
                 for(EntityComponent entityComponent: entityComponents) {
                     spatialHashing.updateEntity(entityComponent.getEntity());
                 }
