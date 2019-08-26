@@ -3,6 +3,8 @@ package net.rubencm.spatialhashing.swing.windows;
 import net.rubencm.spatialhashing.swing.components.GridComponent;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class GridWindow extends JFrame {
 
@@ -15,5 +17,14 @@ public class GridWindow extends JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                gridComponent.terminate();
+
+                super.windowClosing(e);
+            }
+        });
     }
 }

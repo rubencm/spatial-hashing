@@ -1,6 +1,7 @@
 package net.rubencm.spatialhashing;
 
 import net.rubencm.spatialhashing.spatialhashing.Entity;
+import net.rubencm.spatialhashing.spatialhashing.Position;
 import net.rubencm.spatialhashing.spatialhashing.SpatialHashing;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,20 +20,20 @@ public class SpatialHashingTests {
         int cellSize = 250;
         spatialHashing = new SpatialHashing(gridSize, cellSize);
 
-        entity = new Entity(spatialHashing, 550, 550, 100);
-        spatialHashing.add(entity);
+        entity = new Entity(new Position(550, 550), 100);
+        spatialHashing.addEntity(entity);
 
-        spatialHashing.add(new Entity(spatialHashing, 0, 0, 100));
-        spatialHashing.add(new Entity(spatialHashing, 375, 375, 100));
-        spatialHashing.add(new Entity(spatialHashing, 700, 550, 100));
+        spatialHashing.addEntity(new Entity(new Position(0, 0), 100));
+        spatialHashing.addEntity(new Entity(new Position(375, 375), 100));
+        spatialHashing.addEntity(new Entity(new Position(700, 550), 100));
     }
 
     @Test
     public void testGetObjectsInCell() {
-        assertEquals(spatialHashing.getObjectsInCell(0).size(), 1);
-        assertEquals(spatialHashing.getObjectsInCell(1).size(), 0);
-        assertEquals(spatialHashing.getObjectsInCell(5).size(), 1);
-        assertEquals(spatialHashing.getObjectsInCell(10).size(), 2);
+        assertEquals(spatialHashing.getEntitiesInCell(0).size(), 1);
+        assertEquals(spatialHashing.getEntitiesInCell(1).size(), 0);
+        assertEquals(spatialHashing.getEntitiesInCell(5).size(), 1);
+        assertEquals(spatialHashing.getEntitiesInCell(10).size(), 2);
     }
 
     @Test
@@ -44,11 +45,11 @@ public class SpatialHashingTests {
 
     @Test
     public void testEntityGetCells() {
-        assertThat(entity.getCells(), containsInAnyOrder(5, 6, 9, 10));
+        assertThat(spatialHashing.getCells(entity), containsInAnyOrder(5, 6, 9, 10));
     }
 
     @Test
     public void testEntityNearBojects() {
-        assertEquals(entity.getNearObjects().size(), 3);
+        assertEquals(spatialHashing.getNearEntities(entity).size(), 3);
     }
 }
