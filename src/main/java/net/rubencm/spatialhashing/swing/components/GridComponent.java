@@ -42,7 +42,8 @@ public class GridComponent extends JComponent {
                             rand.nextInt(spatialHashing.getGridSize()),
                             rand.nextInt(spatialHashing.getGridSize())
                     ),
-                    objectRadius
+                    objectRadius,
+                    rand.nextInt(500)
             );
 
             EntityComponent entityComponent = new EntityComponent(entity);

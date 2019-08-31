@@ -33,12 +33,12 @@ public class SpatialHashing {
         conversionFactor = 1f / cellSize;
 
         // Initialize objectIndex
-        objectIndex = new HashMap<Entity, Integer>();
+        objectIndex = Collections.synchronizedMap(new HashMap<Entity, Integer>());
 
         // Initialize hashtable
-        hashtable = new HashMap<Integer, List<Entity>>();
+        hashtable = Collections.synchronizedMap(new HashMap<Integer, List<Entity>>());
         for (int i = 0; i < buckets; i++) {
-            hashtable.put(i, new ArrayList<Entity>());
+            hashtable.put(i, Collections.synchronizedList(new ArrayList<Entity>()));
         }
     }
 
@@ -48,9 +48,10 @@ public class SpatialHashing {
      * @param entity
      */
     public void addEntity(Entity entity) {
-        int cell = getCell(entity.getPosition().getX(), entity.getPosition().getY());
+        Position position = entity.getPosition();
+        int cell = getCell(position.getX(), position.getY());
 
-        synchronized (this) {
+        synchronized (entity) {
             objectIndex.put(entity, cell);
             hashtable.get(cell).add(entity);
         }
@@ -62,11 +63,13 @@ public class SpatialHashing {
      * @param entity
      */
     public void updateEntity(Entity entity) {
-        int oldCell = getCell(entity);
-        int newCell = getCell(entity.getPosition().getX(), entity.getPosition().getY());
+        Position position = entity.getPosition();
+        int newCell = getCell(position.getX(), position.getY());
 
-        if(oldCell != newCell) {
-            synchronized (this) {
+        synchronized (entity) {
+            int oldCell = getCell(entity);
+
+            if(oldCell != newCell) {
                 objectIndex.put(entity, newCell);
 
                 hashtable.get(oldCell).remove(entity);
@@ -81,9 +84,9 @@ public class SpatialHashing {
      * @param entity
      */
     public void deleteEntity(Entity entity) {
-        int cell = objectIndex.get(entity);
+        synchronized (entity) {
+            int cell = objectIndex.get(entity);
 
-        synchronized (this) {
             objectIndex.remove(entity);
             hashtable.get(cell).remove(entity);
         }
@@ -129,11 +132,12 @@ public class SpatialHashing {
     public List<Integer> getCells(Entity entity) {
         Set<Integer> cells = new HashSet<Integer>();
         int pos[][] = {{-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
+        Position position = entity.getPosition();
 
         // Look all surrounding cells
         for(int i = 0; i < pos.length; i++) {
-            int cornerX = entity.getPosition().getX() + (pos[i][0] * entity.getRadius());
-            int cornerY = entity.getPosition().getY() + (pos[i][1] * entity.getRadius());
+            int cornerX = position.getX() + (pos[i][0] * entity.getRadius());
+            int cornerY = position.getY() + (pos[i][1] * entity.getRadius());
 
             int cell = getCell(cornerX, cornerY);
 

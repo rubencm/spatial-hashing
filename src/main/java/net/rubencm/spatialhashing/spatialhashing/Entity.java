@@ -30,10 +30,6 @@ public class Entity {
     private boolean isMoving;
     private long startMovement;
 
-    public Entity(Position origin, int radius) {
-        this(origin, radius, 50);
-    }
-
     public Entity(Position position, int radius, int speed) {
         this.origin = this.destination = position;
         this.radius = radius;

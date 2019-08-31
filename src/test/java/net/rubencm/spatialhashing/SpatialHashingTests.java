@@ -20,12 +20,12 @@ public class SpatialHashingTests {
         int cellSize = 250;
         spatialHashing = new SpatialHashing(gridSize, cellSize);
 
-        entity = new Entity(new Position(550, 550), 100);
+        entity = new Entity(new Position(550, 550), 100, 50);
         spatialHashing.addEntity(entity);
 
-        spatialHashing.addEntity(new Entity(new Position(0, 0), 100));
-        spatialHashing.addEntity(new Entity(new Position(375, 375), 100));
-        spatialHashing.addEntity(new Entity(new Position(700, 550), 100));
+        spatialHashing.addEntity(new Entity(new Position(0, 0), 100, 50));
+        spatialHashing.addEntity(new Entity(new Position(375, 375), 100, 50));
+        spatialHashing.addEntity(new Entity(new Position(700, 550), 100, 50));
     }
 
     @Test
